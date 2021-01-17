@@ -13,7 +13,16 @@
             </ul>
             <ul class="navbar-nav">
                 {{#if data }}
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/messages/all/{{data._id}}">Messages</a>
+                </li>
                 {{#if data.isCompany }}
+                <li class="nav-item">
+                    <a class="nav-link" href="/company/administration">Administration</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/worker/employees/{{data.companyId}}">Employees</a>
                 </li>
@@ -23,6 +32,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/user/logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">{{ data.email }}</a>
                 </li>
                 {{else}}
                 <li class="nav-item">

@@ -1,5 +1,15 @@
-{{#if company }}
-  <h1 class="display-4 text-center">Welcome to My {{ company.name }}!</h1>
+{{#if data }}
+<h1 class="display-4 text-center">{{ data.name }}!</h1>
+<div class="container">
+  {{#each workers }}
+<ul class="list-group">
+  <li class="list-group-item">
+    <span>{{ this.firstName }} {{ this.lastName }}</span>
+    <a href="/messages/add/{{this._id}}">Send message</a>
+  </li>
+</ul>
+{{/each}}
+</div>
 {{else}}
 <div class="container mt-4 jumbotron">
   <h1 class="display-4 text-center">Welcome to My Company System!</h1>

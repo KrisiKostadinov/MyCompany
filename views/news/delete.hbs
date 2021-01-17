@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="jumbotron jumbotron text-center">
+        <div class="container">
+            <h1 class="display-4">Deleting post</h1>
+            <p class="lead">You sure, that want to delete it?</p>
+            <div class="d-flex justify-content-center mx-auto w-25">
+                <a class="btn btn-warning mr-2" onclick="back()">Cancel</a>
+                <form action="/news/delete/{{post._id}}?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function back() {
+        window.history.back();
+    }
+</script>

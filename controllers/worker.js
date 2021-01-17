@@ -2,6 +2,7 @@ const Worker = require("../models/Worker");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const configuration = require('../config/configuration');
+const { worker } = require(".");
 
 module.exports = {
     get: {
@@ -14,7 +15,7 @@ module.exports = {
         },
 
         async employees(req, res) {
-            let employees = await Worker.find({ companyId: req.params.companyId }).lean();
+            let employees = await Worker.find({ companyId: req.data.companyId }).lean();
             let display = employees;
             const text = req.body.search;
             if(text) {
@@ -31,7 +32,7 @@ module.exports = {
                 display = employees;
             }
 
-            console.log(text);
+            console.log(display);
             
             res.render('worker/employees', { employees: display });
         }
@@ -45,16 +46,15 @@ module.exports = {
             req.body.password = hash;
 
             try {
-                await Worker.create({ ...req.body, companyId: req.params.companyId });
+                const worker = await Worker.create({ ...req.body, companyId: req.params.companyId });
+                res.redirect('/worker/employees/' + worker._id);
             } catch(err) {
                 console.log(err);
             }
-
-            res.redirect('/');
         },
 
         async login(req, res) {
-            const worker = await Worker.findOne({ email: req.body.email });
+            const worker = await Worker.findOne({ email: req.body.email }).populate('companyId');
 
             if(!worker) {
                 return res.render('worker/login');
@@ -66,6 +66,9 @@ module.exports = {
                         worker: {
                             email: worker.email,
                             isCompany: false,
+                            name: worker.companyId.name,
+                            companyId: worker.companyId._id,
+                            _id: worker._id,
                         },
                     }, configuration.SECRET, (err, token) => {
                         res.cookie('token', token);

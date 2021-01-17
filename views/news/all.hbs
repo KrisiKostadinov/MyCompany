@@ -1,0 +1,18 @@
+<div class="container mt-4">
+    {{#each posts }}
+    <div class="card w-100">
+        <div class="card-body">
+            <h5 class="card-title">{{ this.title }}</h5>
+            <hr>
+            <p class="card-text">{{ this.content }}</p>
+            <hr>
+            <div class="d-flex justify-content-between">
+            <span class="bg-primary text-light p-2 rounded">{{ this.createdOn }}</span>
+            <a href="/news/details/{{this._id}}" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <h4 class="text-center mt-4">No news for now.</h4>
+    {{/each }}
+</div>

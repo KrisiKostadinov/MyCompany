@@ -7,10 +7,11 @@ const isAuth = async (req, res, next) => {
         const token = req.cookies.token;
         if(token) {
             var decoded = await jwt.verify(token, configuration.SECRET);
-            console.log(decoded.company);
             
             if (decoded) {
                 res.locals.data = decoded.company ? decoded.company : decoded.worker;
+                req.data = decoded.company ? decoded.company : decoded.worker;
+                console.log(req.data);
                 return next();
             }
 

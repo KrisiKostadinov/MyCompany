@@ -11,6 +11,10 @@ module.exports = {
 
         login(req, res) {
             res.render('company/login');
+        },
+
+        administration(req, res) {
+            res.render('company/administration');
         }
     },
 

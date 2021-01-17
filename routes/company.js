@@ -4,6 +4,7 @@ const { isAuth } = require('../config/restrictedPages');
 
 router.get('/register', company.get.register);
 router.get('/login', company.get.login);
+router.get('/administration', isAuth, company.get.administration);
 
 router.post('/register', company.post.register);
 router.post('/login', company.post.login);

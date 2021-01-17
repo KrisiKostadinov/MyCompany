@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="card w-100">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <hr>
+            <p class="card-text">{{ post.content }}</p>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <span class="bg-primary text-light p-2 rounded">{{ post.createdOn }}</span>
+                <a href="/news/details/{{post._id}}" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    </div>
+
+    {{#if data.isCompany }}
+    <div class="mt-4">
+        <a class="btn btn-warning" href="/news/edit/{{post._id}}">Edit</a>
+        <a class="btn btn-danger" href="/news/delete/{{post._id}}">Delete</a>
+    </div>
+    {{/if}}
+</div>
