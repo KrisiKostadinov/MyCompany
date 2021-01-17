@@ -7,4 +7,5 @@ const port = config.PORT;
 module.exports = mongosse.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
 }, console.log('Server running on: ', port));

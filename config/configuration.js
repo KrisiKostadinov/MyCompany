@@ -1,4 +1,5 @@
 module.exports = {
     PORT: 3000,
-    URL: 'mongodb://localhost:27017/MyCompany'
+    URL: 'mongodb://localhost:27017/MyCompany',
+    SECRET: 'PASXLS,LX,SL,;.'
 }

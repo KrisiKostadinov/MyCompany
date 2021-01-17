@@ -1,3 +1,6 @@
+{{#if company }}
+  <h1 class="display-4 text-center">Welcome to My {{ company.name }}!</h1>
+{{else}}
 <div class="container mt-4 jumbotron">
   <h1 class="display-4 text-center">Welcome to My Company System!</h1>
   <hr class="my-4">
@@ -5,3 +8,4 @@
     <a class="btn btn-primary btn-lg" href="/user/login" role="button">Login</a>
   </p>
 </div>
+{{/if }}
