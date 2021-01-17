@@ -13,8 +13,27 @@ module.exports = {
             res.render('worker/login');
         },
 
-        employees(req, res) {
-            res.render('worker/employees');
+        async employees(req, res) {
+            let employees = await Worker.find({ companyId: req.params.companyId }).lean();
+            let display = employees;
+            const text = req.body.search;
+            if(text) {
+                const filtered = display.filter(
+                    x => x.firstName.startsWith(text) ||
+                    x.sirName.startsWith(text) ||
+                    x.lastName.startsWith(text) ||
+                    x.position.startsWith(text) ||
+                    x.phone.startsWith(text) ||
+                    x.email.startsWith(text)
+                    );
+                display = filtered;
+            } else {
+                display = employees;
+            }
+
+            console.log(text);
+            
+            res.render('worker/employees', { employees: display });
         }
     },
 
